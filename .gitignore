@@ -11,7 +11,7 @@ __pycache__/
 .tmp
 data/*
 job_config.py
-*.png 
+# *.png 
 /pretrained_models/
 conda-spec-file-julian.txt
 example_weights/*
