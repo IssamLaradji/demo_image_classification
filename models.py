@@ -32,6 +32,10 @@ class Linear(torch.nn.Module):
         # choose between optimizers
         if opt == "adam":
             self.opt = torch.optim.Adam(self.model.parameters(), lr=lr)
+        elif opt == 'sgd':
+            self.opt = torch.optim.SGD(self.model.parameters(), lr=lr)
+        else:
+            raise ValueError(f'{opt} not found')
 
         self.device = device
 
@@ -75,15 +79,6 @@ class Linear(torch.nn.Module):
             images, labels = batch
             images, labels = images.to(self.device), labels.to(self.device)
             logits = self.model.forward(images.view(images.shape[0], -1))
-
-            # Compute loss
-            criterion = torch.nn.CrossEntropyLoss(reduction="mean")
-            loss = criterion(logits, labels.view(-1))
-
-            # Perform optimization step
-            self.opt.zero_grad()
-            loss.backward()
-            self.opt.step()
 
             # Add score
             val_list += [{"val_acc": (logits.argmax(dim=1) == labels).float().mean().item()}]

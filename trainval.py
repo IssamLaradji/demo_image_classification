@@ -1,6 +1,6 @@
 import pandas as pd
 import argparse
-import os, torch
+import os, torch, time
 
 import datasets, models
 
@@ -39,7 +39,9 @@ def trainval(exp_dict, savedir, args):
     score_list = []
     for epoch in range(exp_dict['epochs']):
         # Train for one epoch
+        s_time = time.time()
         train_dict = model.train_on_loader(train_loader)
+        train_time = time.time() - s_time
 
         # Validate
         val_dict = model.val_on_loader(val_loader)
@@ -47,6 +49,9 @@ def trainval(exp_dict, savedir, args):
         # Get Metrics (Tip: add time and size)
         score_dict = {
             "epoch": epoch,
+            "train_time": train_time,
+            "n_train": len(train_loader.dataset),
+            "n_val": len(val_loader.dataset),
             "train_acc": train_dict["train_acc"],
             "train_loss": train_dict["train_loss"],
             "val_acc": val_dict["val_acc"],
@@ -96,7 +101,8 @@ if __name__ == "__main__":
         exp_list = []
         # enumerate different hyperparameters - greedy search is usually desirable
         for lr in [1e-1, 1e-2, 1e-3]:
-            exp_list += [{"dataset": "digits", "model": "linear", "lr": lr, "opt":'adam', "epochs":10}]
+            # for opt in ['adam', 'sgd']:
+                exp_list += [{"dataset": "digits", "model": "linear", "lr": lr, "opt":'adam', "epochs":10}]
 
     # Run experiments and create results file
     hw.run_wizard(

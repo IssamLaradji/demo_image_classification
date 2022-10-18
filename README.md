@@ -45,7 +45,7 @@ Argument Descriptions:
 
 ### 2. Visualize Results
 
-Open `results/results.ipynb` and visualize the results as follows
+Open `results.ipynb` and visualize the results as follows
 
 <p align="center" width="100%">
 <img width="100%" src="https://raw.githubusercontent.com/haven-ai/haven-ai/master/docs/vis.gif">
