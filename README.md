@@ -10,6 +10,10 @@ The goal is to summarize these 5 main stages of building machine learning algori
 <img width="100%" src="docs/stages.png">
 </p>
 
+
+I am Issam Laradji, a Research Scientist at ServiceNow, currently working on tasks related to natural language processing, computer vision and optimization.
+
+
 ## Who is this for?
 
 Anyone who would like to quickly and efficiently get papers published, products deployed, and competitions won.
@@ -48,4 +52,6 @@ Open `results/results.ipynb` and visualize the results as follows
 </p>
 
 
+### Contact me
 
+If you would like to chat or collaborate, you can reach me at [twitter](https://twitter.com/ILaradji) or [LinkedIn](https://www.linkedin.com/in/issam-laradji-67ba1a99/).
